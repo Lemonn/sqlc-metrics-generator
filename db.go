@@ -160,7 +160,7 @@ func replaceNewFunction(file *ast.File, generateInvocationMetrics, generateError
 									Name: "db",
 								},
 								Value: &ast.Ident{
-									Name: "nil",
+									Name: "db",
 								},
 							},
 							&ast.KeyValueExpr{
@@ -168,7 +168,7 @@ func replaceNewFunction(file *ast.File, generateInvocationMetrics, generateError
 									Name: "meter",
 								},
 								Value: &ast.Ident{
-									Name: "nil",
+									Name: "meter",
 								},
 							},
 							&ast.KeyValueExpr{
