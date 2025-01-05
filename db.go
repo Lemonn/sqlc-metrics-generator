@@ -43,9 +43,9 @@ func createConnectionRetrievalFunction() *ast.FuncDecl {
 	return &ast.FuncDecl{
 		Recv: &ast.FieldList{
 			List: []*ast.Field{
-				&ast.Field{
+				{
 					Names: []*ast.Ident{
-						&ast.Ident{
+						{
 							Name: "q",
 						},
 					},
@@ -64,7 +64,7 @@ func createConnectionRetrievalFunction() *ast.FuncDecl {
 			Params: &ast.FieldList{},
 			Results: &ast.FieldList{
 				List: []*ast.Field{
-					&ast.Field{
+					{
 						Type: &ast.Ident{
 							Name: "DBTX",
 						},
@@ -353,9 +353,9 @@ func replaceNewFunction(file *ast.File, generateInvocationMetrics, generateError
 					Type: &ast.FuncType{
 						Params: &ast.FieldList{
 							List: []*ast.Field{
-								&ast.Field{
+								{
 									Names: []*ast.Ident{
-										&ast.Ident{
+										{
 											Name: "db",
 										},
 									},
@@ -363,9 +363,9 @@ func replaceNewFunction(file *ast.File, generateInvocationMetrics, generateError
 										Name: "DBTX",
 									},
 								},
-								&ast.Field{
+								{
 									Names: []*ast.Ident{
-										&ast.Ident{
+										{
 											Name: "meter",
 										},
 									},
@@ -378,9 +378,9 @@ func replaceNewFunction(file *ast.File, generateInvocationMetrics, generateError
 										},
 									},
 								},
-								&ast.Field{
+								{
 									Names: []*ast.Ident{
-										&ast.Ident{
+										{
 											Name: "basename",
 										},
 									},
@@ -394,14 +394,14 @@ func replaceNewFunction(file *ast.File, generateInvocationMetrics, generateError
 						},
 						Results: &ast.FieldList{
 							List: []*ast.Field{
-								&ast.Field{
+								{
 									Type: &ast.StarExpr{
 										X: &ast.Ident{
 											Name: "Queries",
 										},
 									},
 								},
-								&ast.Field{
+								{
 									Type: &ast.Ident{
 										Name: "error",
 									},
@@ -421,9 +421,9 @@ func replaceNewFunction(file *ast.File, generateInvocationMetrics, generateError
 // Add a metric value to the Query struct for each function
 func generateQueryStruct(file *ast.File, foundFunctions []string, generateInvocationMetrics, generateErrorMetrics, generateQueryRuntimeMetrics bool) {
 	list := []*ast.Field{
-		&ast.Field{
+		{
 			Names: []*ast.Ident{
-				&ast.Ident{
+				{
 					Name: "db",
 				},
 			},
@@ -431,9 +431,9 @@ func generateQueryStruct(file *ast.File, foundFunctions []string, generateInvoca
 				Name: "DBTX",
 			},
 		},
-		&ast.Field{
+		{
 			Names: []*ast.Ident{
-				&ast.Ident{
+				{
 					Name: "meter",
 				},
 			},
@@ -446,9 +446,9 @@ func generateQueryStruct(file *ast.File, foundFunctions []string, generateInvoca
 				},
 			},
 		},
-		&ast.Field{
+		{
 			Names: []*ast.Ident{
-				&ast.Ident{
+				{
 					Name: "basename",
 				},
 			},
@@ -461,7 +461,7 @@ func generateQueryStruct(file *ast.File, foundFunctions []string, generateInvoca
 		for _, function := range foundFunctions {
 			list = append(list, &ast.Field{
 				Names: []*ast.Ident{
-					&ast.Ident{
+					{
 						Name: setUnexported(function) + "RuntimeGauge",
 					},
 				},
@@ -480,7 +480,7 @@ func generateQueryStruct(file *ast.File, foundFunctions []string, generateInvoca
 		for _, function := range foundFunctions {
 			list = append(list, &ast.Field{
 				Names: []*ast.Ident{
-					&ast.Ident{
+					{
 						Name: setUnexported(function) + "InvocationCounter",
 					},
 				},
@@ -499,7 +499,7 @@ func generateQueryStruct(file *ast.File, foundFunctions []string, generateInvoca
 		for _, function := range foundFunctions {
 			list = append(list, &ast.Field{
 				Names: []*ast.Ident{
-					&ast.Ident{
+					{
 						Name: setUnexported(function) + "ErrorCounter",
 					},
 				},
@@ -543,9 +543,9 @@ func createInitRuntimeMetricsFunction(fundFunctions []string) *ast.FuncDecl {
 	initMetricsFunction := &ast.FuncDecl{
 		Recv: &ast.FieldList{
 			List: []*ast.Field{
-				&ast.Field{
+				{
 					Names: []*ast.Ident{
-						&ast.Ident{
+						{
 							Name: "q",
 						},
 					},
@@ -564,7 +564,7 @@ func createInitRuntimeMetricsFunction(fundFunctions []string) *ast.FuncDecl {
 			Params: &ast.FieldList{},
 			Results: &ast.FieldList{
 				List: []*ast.Field{
-					&ast.Field{
+					{
 						Type: &ast.Ident{
 							Name: "error",
 						},
@@ -585,7 +585,7 @@ func createInitRuntimeMetricsFunction(fundFunctions []string) *ast.FuncDecl {
 			Specs: []ast.Spec{
 				&ast.ValueSpec{
 					Names: []*ast.Ident{
-						&ast.Ident{
+						{
 							Name: "err",
 						},
 					},
@@ -692,9 +692,9 @@ func createInitErrorMetricsFunction(fundFunctions []string) *ast.FuncDecl {
 	initMetricsFunction := &ast.FuncDecl{
 		Recv: &ast.FieldList{
 			List: []*ast.Field{
-				&ast.Field{
+				{
 					Names: []*ast.Ident{
-						&ast.Ident{
+						{
 							Name: "q",
 						},
 					},
@@ -713,7 +713,7 @@ func createInitErrorMetricsFunction(fundFunctions []string) *ast.FuncDecl {
 			Params: &ast.FieldList{},
 			Results: &ast.FieldList{
 				List: []*ast.Field{
-					&ast.Field{
+					{
 						Type: &ast.Ident{
 							Name: "error",
 						},
@@ -734,7 +734,7 @@ func createInitErrorMetricsFunction(fundFunctions []string) *ast.FuncDecl {
 			Specs: []ast.Spec{
 				&ast.ValueSpec{
 					Names: []*ast.Ident{
-						&ast.Ident{
+						{
 							Name: "err",
 						},
 					},
@@ -841,9 +841,9 @@ func createInitCallMetricsFunction(fundFunctions []string) *ast.FuncDecl {
 	initMetricsFunction := &ast.FuncDecl{
 		Recv: &ast.FieldList{
 			List: []*ast.Field{
-				&ast.Field{
+				{
 					Names: []*ast.Ident{
-						&ast.Ident{
+						{
 							Name: "q",
 						},
 					},
@@ -862,7 +862,7 @@ func createInitCallMetricsFunction(fundFunctions []string) *ast.FuncDecl {
 			Params: &ast.FieldList{},
 			Results: &ast.FieldList{
 				List: []*ast.Field{
-					&ast.Field{
+					{
 						Type: &ast.Ident{
 							Name: "error",
 						},
@@ -883,7 +883,7 @@ func createInitCallMetricsFunction(fundFunctions []string) *ast.FuncDecl {
 			Specs: []ast.Spec{
 				&ast.ValueSpec{
 					Names: []*ast.Ident{
-						&ast.Ident{
+						{
 							Name: "err",
 						},
 					},
